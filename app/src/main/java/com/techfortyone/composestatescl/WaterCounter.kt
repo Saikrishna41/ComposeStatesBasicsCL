@@ -1,13 +1,13 @@
 package com.techfortyone.composestatescl
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -22,8 +22,14 @@ fun WaterCounter(modifier: Modifier = Modifier) {
         Text(
             text = "You have had $$count glasses of water",
         )
-        Button(onClick = { count++ }, Modifier.padding(8.dp)) {
-            Text(text = "Add one")
+        Row(modifier = Modifier.padding(top = 8.dp)) {
+            Button(onClick = { count++ }, Modifier.padding(8.dp), enabled = count < 10) {
+                Text(text = "Add one")
+            }
+            Button(onClick = { count = 0}, modifier = Modifier.padding(8.dp)) {
+                Text(text = "Clear Water Count")
+            }
         }
+
     }
 }
